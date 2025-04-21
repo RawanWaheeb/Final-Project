@@ -4,13 +4,17 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCart, Heart, ScanLine, Menu, X, User, LogOut } from "lucide-react";
 import logo from "../../assets/images/logo.png"; 
-
+import axios from "axios";
 export default function NavbarAfterAuth() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [profileImage, setProfileImage] = useState("/default-profile.png");
   const [activeLink, setActiveLink] = useState(""); 
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [reviewContent, setReviewContent] = useState("");
+  const [reviews, setReviews] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,13 +58,46 @@ export default function NavbarAfterAuth() {
       window.location.replace("/login");
     }, 100);
   };
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("accessToken");
+
+    const formData = new FormData();
+    formData.append("review", reviewContent);
+    if (selectedImage) {
+      formData.append("image", selectedImage);
+    }
+
+    try {
+      const response = await axios.post(
+        "https://mohamednowar.pythonanywhere.com/api/reviews/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setIsModalOpen(false);
+      setReviewContent("");
+      setSelectedImage(null);
+
+      const updatedReviews = await axios.get("https://mohamednowar.pythonanywhere.com/api/reviews/");
+      setReviews(updatedReviews.data);
+    } catch (error) {
+      console.error("Error submitting review:", error);
+    }
+  };
 
   const menuItems = [
     { name: "Home", action: () => { navigate("/");  }},
     { name: "Shop", action: () => { navigate("/Products");  }},
     { name: "Community", action: () => { navigate("/community"); ; }},
     { name: "About Us", action: () => { navigate("/", { state: { scrollTo: "about_us" } });  }},
-    { name: "Review", action: () => { navigate("/", { state: { scrollTo: "review" } }); }},
+    // { name: "Review", action: () => { navigate("/", { state: { scrollTo: "review" } }); }},
+    { name: "Review", action: () => setIsModalOpen(true) },
   ];
 
   return (
@@ -163,10 +200,48 @@ export default function NavbarAfterAuth() {
   </div>
         </div>
       )}
+      
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-3xl">
+            <h2 className="text-2xl font-semibold mb-4">Submit a Review</h2>
+            <form onSubmit={handleReviewSubmit}>
+              <textarea
+                value={reviewContent}
+                onChange={(e) => setReviewContent(e.target.value)}
+                placeholder="Write your review..."
+                className="w-full p-2 border rounded mb-4"
+                required
+              />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setSelectedImage(e.target.files[0])}
+                className="mb-4"
+              />
+              <div className="flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // import { useContext } from "react";
 // import { CartContext } from "../../Context/Cart.context";
