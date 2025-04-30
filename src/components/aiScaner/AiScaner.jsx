@@ -1,3 +1,6 @@
+
+
+
 "use client";
 
 import { useState, useRef } from "react";
@@ -63,7 +66,6 @@ export default function AiScanner() {
 
       const result = await response.json();
 
-      // فلترة الصور الغير نباتية بناءً على نتائج مشكوك فيها
       const invalidResults = ["unknown", "northern leaf blight", "not a plant", "undefined", "null"];
       if (
         !result.disease_name ||
@@ -80,7 +82,6 @@ export default function AiScanner() {
         return;
       }
 
-      // حالة النبتة سليمة أو مريضة
       setAnalysisResult({
         status: result.disease_name.toLowerCase().includes("healthy") ? "healthy" : "unhealthy",
         message: result.disease_name.toLowerCase().includes("healthy")
@@ -97,7 +98,8 @@ export default function AiScanner() {
       console.error("Error analyzing image:", error);
       setAnalysisResult({
         status: "invalid",
-        message: "🚫 Error analyzing the image. Please try again later.",
+        message:
+          "🚫 The uploaded image doesn't appear to be a plant. Please upload a valid plant image.",
         advice: [],
       });
     } finally {
@@ -113,8 +115,14 @@ export default function AiScanner() {
       </Helmet>
 
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-6 py-8 gap-6">
+{loading && (
+  <div className="mb-4 px-4 py-2 text-center bg-primary-buttons text-white rounded-md shadow-md w-[300px]">
+     Analyzing the image... Please wait.
+  </div>
+)}
 
-        {analysisResult && (
+        
+        {analysisResult && !loading && (
           <div
             className={`mb-4 text-center px-4 py-2 rounded-md w-[300px] shadow-lg ${
               analysisResult.status === "invalid"
@@ -184,7 +192,7 @@ export default function AiScanner() {
           </div>
         </div>
 
-        {analysisResult?.advice?.length > 0 && (
+        {analysisResult?.advice?.length > 0 && !loading && (
           <div className="mt-6 w-full max-w-3xl text-center bg-white shadow-lg rounded-md px-6 py-4">
             <p className="text-gray-700 text-sm sm:text-base font-semibold mb-2">
               Diagnosis Details:
@@ -202,3 +210,5 @@ export default function AiScanner() {
     </>
   );
 }
+
+
