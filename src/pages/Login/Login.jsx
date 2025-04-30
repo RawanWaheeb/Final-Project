@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { useContext, useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -31,7 +30,7 @@ export default function Login() {
       if (!refresh) throw new Error("No refresh token found");
 
       const response = await axios.post(
-        "https://mohamednowar.pythonanywhere.com/api/refresh/",
+        "http://13.51.15.15/api/refresh/",
         { refresh },
         { headers: { "Content-Type": "application/json" } }
       );
@@ -44,6 +43,7 @@ export default function Login() {
     } catch (error) {
       console.error("❌ Failed to refresh token:", error);
       localStorage.removeItem("accessToken");
+
       localStorage.removeItem("refreshToken");
       navigate("/login");
     }
@@ -51,6 +51,7 @@ export default function Login() {
 
   const getAuthHeader = async () => {
     let token = localStorage.getItem("accessToken");
+    
     if (!token) {
       token = await refreshToken();
     }
@@ -62,7 +63,7 @@ export default function Login() {
 
     try {
       const { data } = await axios.post(
-        "https://mohamednowar.pythonanywhere.com/api/login/",
+        "http://13.51.15.15/api/login/",
         { email: values.email, password: values.password },
         { headers: { "Content-Type": "application/json" } }
       );

@@ -9,7 +9,7 @@ export const ReviewSection = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get("https://mohamednowar.pythonanywhere.com/api/reviews/");
+        const response = await axios.get("http://13.51.15.15/api/reviews/");
         setReviews(response.data);
       } catch (error) {
         console.error("Error fetching reviews:", error);
@@ -18,7 +18,7 @@ export const ReviewSection = () => {
 
     fetchReviews();
 
-    const intervalId = setInterval(fetchReviews, 60000); 
+    const intervalId = setInterval(fetchReviews, 4000); 
 
     return () => clearInterval(intervalId);
   }, []);
@@ -47,7 +47,7 @@ export const ReviewSection = () => {
           <img
             src={reviews[activeIndex].image || "lovable-uploads/comment.png"}
             alt="comment"
-            // className="hidden md:block absolute h-[80%] top-[10%] left-[-150px]"
+       
             className="hidden md:block absolute top-[10%] left-[-150px] w-[200px] h-[350px] object-cover rounded-lg"
           />
         )}
@@ -69,22 +69,6 @@ export const ReviewSection = () => {
               ))}
             </div>
 
-            {/* <div className="hidden md:block">
-              <button
-                onClick={handlePrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-3 rounded-full shadow-lg hover:bg-white transition-colors"
-                aria-label="Previous review"
-              >
-                ←
-              </button>
-              <button
-                onClick={handleNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-3 rounded-full shadow-lg hover:bg-white transition-colors"
-                aria-label="Next review"
-              >
-                →
-              </button>
-            </div> */}
 
             <div className="flex justify-center gap-2 mt-8">
               {reviews.map((_, index) => (

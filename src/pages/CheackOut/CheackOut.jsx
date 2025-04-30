@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 import { useEffect, useState, useContext } from "react";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
@@ -71,7 +63,7 @@ export default function CheackOut() {
   
     try {
       const { data } = await axios.post(
-        "https://mohamednowar.pythonanywhere.com/api/checkout/",
+        "http://13.51.15.15/api/checkout/",
         orderData,
         {
           headers: {

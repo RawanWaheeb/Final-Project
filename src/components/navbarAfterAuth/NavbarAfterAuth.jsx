@@ -28,7 +28,7 @@ export default function NavbarAfterAuth() {
       const accessToken = localStorage.getItem("accessToken");
       if (accessToken) {
         try {
-          const response = await fetch("https://mohamednowar.pythonanywhere.com/api/profile/", {
+          const response = await fetch("http://13.51.15.15/api/profile/", {
             method: "GET",
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -70,7 +70,7 @@ export default function NavbarAfterAuth() {
 
     try {
       const response = await axios.post(
-        "https://mohamednowar.pythonanywhere.com/api/reviews/",
+        "http://13.51.15.15/api/reviews/",
         formData,
         {
           headers: {
@@ -84,7 +84,7 @@ export default function NavbarAfterAuth() {
       setReviewContent("");
       setSelectedImage(null);
 
-      const updatedReviews = await axios.get("https://mohamednowar.pythonanywhere.com/api/reviews/");
+      const updatedReviews = await axios.get("http://13.51.15.15/api/reviews/");
       setReviews(updatedReviews.data);
     } catch (error) {
       console.error("Error submitting review:", error);
@@ -96,7 +96,6 @@ export default function NavbarAfterAuth() {
     { name: "Shop", action: () => { navigate("/Products");  }},
     { name: "Community", action: () => { navigate("/community"); ; }},
     { name: "About Us", action: () => { navigate("/", { state: { scrollTo: "about_us" } });  }},
-    // { name: "Review", action: () => { navigate("/", { state: { scrollTo: "review" } }); }},
     { name: "Review", action: () => setIsModalOpen(true) },
   ];
 
@@ -241,84 +240,3 @@ export default function NavbarAfterAuth() {
     </nav>
   );
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// import { useContext } from "react";
-// import { CartContext } from "../../Context/Cart.context";
-// import { WishListContext } from "../../Context/WishList.context";
-// import { ShoppingCart, Heart, ScanLine, User, LogOut, Menu, X } from "lucide-react";
-// import logo from "../../assets/images/logo.png"; 
-
-// export default function NavbarAfterAuth() {
-//   const { cartItemCount } = useContext(CartContext); // عدد العناصر في السلة
-//   const { wishItemCount } = useContext(WishListContext); // عدد العناصر في الويشليست
-
-//   const [isOpen, setIsOpen] = useState(false);
-//   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-//   const [isScrolled, setIsScrolled] = useState(false);
-//   const [profileImage, setProfileImage] = useState("/default-profile.png");
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const handleScroll = () => setIsScrolled(window.scrollY > 50);
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, []);
-
-//   const handleLogout = () => {
-//     localStorage.clear();
-//     setIsDropdownOpen(false);
-//     window.dispatchEvent(new Event("authChange"));
-//     setTimeout(() => {
-//       window.location.replace("/login");
-//     }, 100);
-//   };
-
-//   return (
-//     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`}>
-//       <div className="container mx-auto flex justify-between items-center px-6 py-4">
-    
-//         <div className="hidden xl:flex items-center gap-10">
-//           {[ 
-//             { icon: <ShoppingCart size={20} />, text: "Cart", action: () => navigate("/cart"), count: cartItemCount },
-//             { icon: <Heart size={20} />, text: "Wishlist", action: () => navigate("/wishlist"), count: wishItemCount },
-//             { icon: <ScanLine size={20} />, text: "Scanner", action: () => navigate("/ai_help") },
-//           ].map((item, index) => (
-//             <div key={index} onClick={item.action} className="flex items-center gap-2 cursor-pointer transform transition-transform hover:scale-105 relative">
-//               <div className="p-2 bg-primary-buttons text-white rounded-full">
-//                 {item.icon}
-//               </div>
-//               <span className="text-gray-700 font-medium">{item.text}</span>
-//               {item.count > 0 && (
-//                 <div className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-//                   {item.count}
-//                 </div>
-//               )}
-//             </div>
-//           ))}
-//         </div>
-
-//         <div className="flex justify-start xl:justify-center flex-1" style={{ position: 'relative', zIndex: 10 }}>
-//           <img src={logo} alt="GroVana Logo" className="h-12 md:h-16 cursor-pointer" onClick={() => navigate("/")} />
-//         </div>
-
-//         <div className="hidden xl:flex items-center gap-6 text-gray-700 font-semibold">
-//           {/* Menu items code */}
-//           {/* Profile image and logout button */}
-//         </div>
-
-//         <div className="xl:hidden flex items-center">
-//           <button onClick={() => setIsOpen(!isOpen)}>
-//             {isOpen ? <X size={28} /> : <Menu size={28} />}
-//           </button>
-//         </div>
-//       </div>
-
-//       {isOpen && (
-//         <div className="xl:hidden bg-white shadow-md absolute top-16 left-0 w-full flex flex-col items-center py-4 space-y-4">
-//           {/* Menu items for mobile */}
-//         </div>
-//       )}
-//     </nav>
-//   );
-// }

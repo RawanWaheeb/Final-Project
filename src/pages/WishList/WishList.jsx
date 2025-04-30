@@ -6,7 +6,7 @@ import wish from "../../assets/images/wishlist.png";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-// Wishlist page
+
 export default function WishList() {
   const { getProductWishList, wishInfo } = useContext(WishListContext);
 

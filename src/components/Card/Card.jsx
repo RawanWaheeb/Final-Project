@@ -1,5 +1,3 @@
-
-
 import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../Context/Cart.context";
 import { WishListContext } from "../../Context/WishList.context";
@@ -34,7 +32,7 @@ export default function Card({ productInfo }) {
   const imageUrl = image
     ? image.startsWith("http")
       ? image
-      : `https://mohamednowar.pythonanywhere.com/media/${image}`
+      : `http://13.51.15.15/media/${image}`
     : "https://via.placeholder.com/150";
 
   const isOutOfStock = stock_quantity === 0;

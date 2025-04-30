@@ -1,6 +1,3 @@
-
-
-
 import { useContext } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { WishListContext } from "../../Context/WishList.context";

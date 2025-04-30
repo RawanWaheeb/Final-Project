@@ -1,6 +1,3 @@
-
-
-
 import { useEffect, useState, useCallback } from "react";
 import Card from "../../components/Card/Card";
 import Loading from "../../components/Loading/Loading";
@@ -9,7 +6,7 @@ import { Helmet } from "react-helmet";
 import productfound from "../../assets/images/no item.jpg";
 import { debounce } from "lodash";
 
-const API_URL = "https://mohamednowar.pythonanywhere.com/api/products/";
+const API_URL = "http://13.51.15.15/api/products/";
 
 export default function Products() {
   const [products, setProducts] = useState([]);

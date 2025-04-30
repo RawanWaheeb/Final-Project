@@ -18,7 +18,7 @@ export default function FormContact() {
         }
 
         try {
-            const result = await axios.post("https://mohamednowar.pythonanywhere.com/api/contact/", data, {
+            const result = await axios.post("http://13.51.15.15/api/contact/", data, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`

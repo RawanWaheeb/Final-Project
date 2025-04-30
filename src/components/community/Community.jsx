@@ -1,6 +1,7 @@
 import { useState } from "react";
 import UploadPost from "./uploadPost/UploadPost";
 import ContainerPost from "./ContainerPost";
+import { Helmet } from "react-helmet";
 
 export default function Community() {
   const [newPost, setNewPost] = useState(null);
@@ -10,12 +11,18 @@ export default function Community() {
   };
 
   return (
-    <div className="py-20 h-auto mt-24">
+    <>
+     <Helmet>
+        <title>Community</title>
+        <meta name="description" content="Community page" />
+      </Helmet>
+    <div className="py-40 h-auto mt-24">
       <section className="container mx-auto flex justify-center">
         <UploadPost onCreatePost={handleNewPost} />
       </section>
 
       <ContainerPost newPost={newPost} />
     </div>
+    </>
   );
 }

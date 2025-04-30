@@ -19,7 +19,7 @@ export default function ForgetPassword() {
 
     try {
       await axios.post(
-        "https://mohamednowar.pythonanywhere.com/api/get_otp/",
+        "http://13.51.15.15/api/get_otp/",
         { email: values.email },
         {
           headers: {

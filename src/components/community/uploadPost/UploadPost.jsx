@@ -1,20 +1,37 @@
-
-
-
-
-
-/* eslint-disable react/prop-types */
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { FaCamera } from 'react-icons/fa';
 
 const UploadPost = ({ onCreatePost }) => {
   const [postContent, setPostContent] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
   const fileInputRef = useRef(null);
 
   const token = localStorage.getItem("accessToken");
-  const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+
+
+  useEffect(() => {
+    const storedProfile = localStorage.getItem("userProfile");
+
+    if (storedProfile) {
+      setUserProfile(JSON.parse(storedProfile));
+    } else {
+      
+      axios.get("http://13.51.15.15/api/profile/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => {
+          localStorage.setItem("userProfile", JSON.stringify(res.data));
+          setUserProfile(res.data);
+        })
+        .catch((err) => {
+          console.error("Failed to fetch profile:", err);
+        });
+    }
+  }, [token]);
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -26,10 +43,9 @@ const UploadPost = ({ onCreatePost }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      console.log("Token:", token);
-      console.log("Selected Image:", selectedImage);
+    if (!userProfile) return;
 
+    try {
       const formData = new FormData();
       formData.append("post_name", userProfile.username);
       formData.append("content", postContent);
@@ -39,7 +55,7 @@ const UploadPost = ({ onCreatePost }) => {
       }
 
       const response = await axios.post(
-        "https://mohamednowar.pythonanywhere.com/api/posts/",
+        "http://13.51.15.15/api/posts/",
         formData,
         {
           headers: {
@@ -49,15 +65,13 @@ const UploadPost = ({ onCreatePost }) => {
         }
       );
 
-      console.log("Post Response:", response.data);
-
       setPostContent("");
       setSelectedImage(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
 
       onCreatePost(response.data);
-    } catch (e) {
-      console.error("Error uploading post:", e);
+    } catch (err) {
+      console.error("Error creating post:", err);
     }
   };
 
@@ -69,7 +83,7 @@ const UploadPost = ({ onCreatePost }) => {
     >
       <div className="flex items-center gap-2 md:gap-4">
         <img
-          src={userProfile?.image || "lovable-uploads/profile.png"}
+          src={userProfile?.image || "/lovable-uploads/profile.png"}
           alt="Profile"
           className="w-8 h-8 md:w-12 md:h-12 rounded-full object-cover"
         />
@@ -107,7 +121,7 @@ const UploadPost = ({ onCreatePost }) => {
           />
           <label
             htmlFor="image-upload"
-            className="flex items-center gap-1 md:gap-2 text-gray-600 cursor-pointer hover:text-green-600 text-sm md:text-base"
+            className="flex items-center gap-1 md:gap-2 text-gray-600 cursor-pointer hover:text-primary-buttons text-sm md:text-base"
           >
             <FaCamera className="w-5 h-5" />
             <span>Add Photo</span>
@@ -115,7 +129,7 @@ const UploadPost = ({ onCreatePost }) => {
         </div>
         <button
           type="submit"
-          className="bg-green-600 text-white px-4 py-2 md:px-6 md:py-2 rounded-full hover:bg-green-700 transition-colors text-sm md:text-base"
+          className="bg-primary-buttons text-white px-4 py-2 md:px-6 md:py-2 rounded-full hover:bg-primary hover:text-black transition-colors text-sm md:text-base"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -138,8 +152,5 @@ const UploadPost = ({ onCreatePost }) => {
 };
 
 export default UploadPost;
-
-
-
 
 

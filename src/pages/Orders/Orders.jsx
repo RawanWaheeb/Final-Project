@@ -1,5 +1,3 @@
-
-
 import { useContext, useEffect, useState } from "react";
 import { userContext } from "../../Context/User.context"; 
 import axios from "axios";
@@ -25,7 +23,7 @@ export default function Orders() {
       if (!storedToken) return;
 
       const options = {
-        url: "https://mohamednowar.pythonanywhere.com/api/orders/", 
+        url: "http://13.51.15.15/api/orders/", 
         method: "GET",
         headers: {
           Authorization: `Bearer ${storedToken}`,
