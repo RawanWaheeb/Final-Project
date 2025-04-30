@@ -124,7 +124,7 @@ export default function AiScanner() {
         
         {analysisResult && !loading && (
           <div
-            className={`mb-4 text-center px-4 py-2 rounded-md w-[300px] shadow-lg ${
+            className={` mt-16 mb-4 text-center px-4 py-2 rounded-md w-[300px] shadow-lg ${
               analysisResult.status === "invalid"
                 ? "bg-red-100 text-red-700 border border-red-300"
                 : "bg-white text-gray-800"
