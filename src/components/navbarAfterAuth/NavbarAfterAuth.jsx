@@ -204,36 +204,51 @@ export default function NavbarAfterAuth() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-3xl">
             <h2 className="text-2xl font-semibold mb-4">Submit a Review</h2>
-            <form onSubmit={handleReviewSubmit}>
-              <textarea
-                value={reviewContent}
-                onChange={(e) => setReviewContent(e.target.value)}
-                placeholder="Write your review..."
-                className="w-full p-2 border rounded mb-4"
-                required
-              />
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setSelectedImage(e.target.files[0])}
-                className="mb-4"
-              />
-              <div className="flex justify-end gap-2">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
+<form onSubmit={handleReviewSubmit}>
+  <textarea
+    value={reviewContent}
+    onChange={(e) => setReviewContent(e.target.value)}
+    placeholder="Write your review..."
+    className="w-full p-2 border rounded mb-4"
+    required
+  />
+  <div className="mb-4">
+    <label
+      htmlFor="fileUpload"
+      className="cursor-pointer bg-primary-main text-white px-4 py-2 rounded hover:bg-[#98CBB0]  transition-colors inline-block"
+    >
+      Upload Photo
+    </label>
+    <input
+      id="fileUpload"
+      type="file"
+      accept="image/*"
+      onChange={(e) => setSelectedImage(e.target.files[0])}
+      className="hidden"
+    />
+  </div>
+
+  <div className="flex justify-end gap-2">
+    <button
+      type="button"
+      onClick={() => setIsModalOpen(false)}
+      className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
+    >
+      Cancel
+    </button>
+
+    <button
+      type="submit"
+      
+      className="bg-primary-main text-white px-4 py-2 rounded hover:bg-[#98CBB0] transition-colors"
+
+    >
+      Submit
+    </button>
+  </div>
+</form>
+
+
           </div>
         </div>
       )}

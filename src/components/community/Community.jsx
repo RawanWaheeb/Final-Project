@@ -1,3 +1,5 @@
+
+
 import { useState } from "react";
 import UploadPost from "./uploadPost/UploadPost";
 import ContainerPost from "./ContainerPost";
@@ -12,17 +14,22 @@ export default function Community() {
 
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>Community</title>
         <meta name="description" content="Community page" />
       </Helmet>
-    <div className="py-40 h-auto mt-24">
-      <section className="container mx-auto flex justify-center">
-        <UploadPost onCreatePost={handleNewPost} />
-      </section>
+      <div className="min-h-screen flex flex-col justify-between">
+        <main className="flex-grow">
+          <div className="py-40 mt-24">
+            <section className="container mx-auto flex justify-center">
+              <UploadPost onCreatePost={handleNewPost} />
+            </section>
 
-      <ContainerPost newPost={newPost} />
-    </div>
+            <ContainerPost newPost={newPost} />
+          </div>
+        </main>
+
+      </div>
     </>
   );
 }

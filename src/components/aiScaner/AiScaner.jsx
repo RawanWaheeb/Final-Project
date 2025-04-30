@@ -184,7 +184,7 @@ export default function AiScanner() {
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="mt-4 bg-green-700 hover:bg-green-800 text-white font-semibold px-6 py-2 rounded-lg transition w-40"
+                className="mt-4 bg-primary-buttons hover:bg-primary text-white hover:text-black font-semibold px-6 py-2 rounded-lg transition-colors w-40"
               >
                 {loading ? "Analyzing..." : "Analyze Plant"}
               </button>
@@ -197,13 +197,14 @@ export default function AiScanner() {
             <p className="text-gray-700 text-sm sm:text-base font-semibold mb-2">
               Diagnosis Details:
             </p>
-            <ul className="list-disc list-inside text-gray-700 text-sm sm:text-base text-left mx-auto max-w-lg">
-              {analysisResult.advice.map((tip, index) => (
-                <li key={index} className="mb-1">
-                  {tip}
-                </li>
-              ))}
-            </ul>
+<div className="text-gray-700 text-sm sm:text-base text-left mx-auto max-w-lg space-y-4 whitespace-pre-line leading-relaxed">
+  {analysisResult.advice.map((tip, index) => (
+    <p key={index}>
+      {tip}
+    </p>
+  ))}
+</div>
+
           </div>
         )}
       </div>
