@@ -39,7 +39,7 @@ export default function ProductDetails() {
     setError(null);
     try {
       const { data } = await axios.get(
-        `http://13.51.15.15/api/products/${slug}/`,
+        `http://3.208.171.32/api/products/${slug}/`,
         { headers }
       );
       setProductDetails(data);
@@ -47,7 +47,7 @@ export default function ProductDetails() {
       setRating(savedRating ? parseInt(savedRating) : data?.rating || 0);
       
       const relatedResponse = await axios.get(
-        `http://13.51.15.15/api/products/?category=${encodeURIComponent(data.category)}`,
+        `http://3.208.171.32/api/products/?category=${encodeURIComponent(data.category)}`,
         { headers }
       );
       setRelatedProducts(relatedResponse.data?.filter(p => p.slug !== data.slug).slice(0, 4));
@@ -87,7 +87,7 @@ export default function ProductDetails() {
   async function handleRatingSubmit(newRating) {
     try {
       await axios.post(
-        `http://13.51.15.15/api/products/${slug}/rate/`,
+        `http://3.208.171.32/api/products/${slug}/rate/`,
         { rating: newRating },
         { headers }
       );

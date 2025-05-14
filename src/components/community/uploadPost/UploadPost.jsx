@@ -18,7 +18,7 @@ const UploadPost = ({ onCreatePost }) => {
       setUserProfile(JSON.parse(storedProfile));
     } else {
       
-      axios.get("http://13.51.15.15/api/profile/", {
+      axios.get("http://3.208.171.32/api/profile/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,7 +55,7 @@ const UploadPost = ({ onCreatePost }) => {
       }
 
       const response = await axios.post(
-        "http://13.51.15.15/api/posts/",
+        "http://3.208.171.32/api/posts/",
         formData,
         {
           headers: {

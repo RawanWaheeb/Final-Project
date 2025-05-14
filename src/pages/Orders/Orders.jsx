@@ -23,7 +23,7 @@ export default function Orders() {
       if (!storedToken) return;
 
       const options = {
-        url: "http://13.51.15.15/api/orders/", 
+        url: "http://3.208.171.32/api/orders/", 
         method: "GET",
         headers: {
           Authorization: `Bearer ${storedToken}`,

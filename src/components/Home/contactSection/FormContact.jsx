@@ -18,7 +18,7 @@ export default function FormContact() {
         }
 
         try {
-            const result = await axios.post("http://13.51.15.15/api/contact/", data, {
+            const result = await axios.post("http://3.208.171.32/api/contact/", data, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
@@ -82,7 +82,7 @@ export default function FormContact() {
 
                     <button
                         type="submit"
-                        className="w-full bg-[#2E5B41] hover:bg-[#234732] text-white h-12 text-base md:text-lg rounded-xl transition-colors"
+                        className="w-full bg-primary-buttons hover:bg-primary text-white hover:text-black h-12 text-base md:text-lg rounded-xl transition-colors"
                     >
                         Send
                     </button>

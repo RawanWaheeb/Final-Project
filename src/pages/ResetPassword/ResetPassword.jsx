@@ -20,7 +20,7 @@ export default function VerifyOTP() {
       const token = localStorage.getItem("accessToken"); 
   
       const { data } = await axios.post(
-        "http://13.51.15.15/api/verify_otp/",
+        "http://3.208.171.32/api/verify_otp/",
         { email: values.email, otp: values.otp },
         {
           headers: {

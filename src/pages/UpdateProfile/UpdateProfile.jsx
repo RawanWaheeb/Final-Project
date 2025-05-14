@@ -17,7 +17,7 @@ const UpdateProfile = () => {
 
   const fetchProfile = async () => {
     try {
-      const response = await fetch("http://13.51.15.15/api/profile/", {
+      const response = await fetch("http://3.208.171.32/api/profile/", {
         method: "GET",
         headers: { Authorization: authHeader },
       });
@@ -88,7 +88,7 @@ const UpdateProfile = () => {
           formData.append("image", selectedImage);
         }
     
-        const response = await fetch("http://13.51.15.15/api/update/", {
+        const response = await fetch("http://3.208.171.32/api/update/", {
           method: "PATCH",
           headers: { Authorization: authHeader },
           body: formData,
@@ -99,7 +99,7 @@ const UpdateProfile = () => {
           throw new Error(errorData.message || "Update failed");
         }
     
-        const newProfileResponse = await fetch("http://13.51.15.15/api/profile/", {
+        const newProfileResponse = await fetch("http://3.208.171.32/api/profile/", {
           method: "GET",
           headers: { Authorization: authHeader },
         });

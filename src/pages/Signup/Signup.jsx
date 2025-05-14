@@ -41,7 +41,7 @@ export default function Signup() {
    
     
     try {
-      const response = await axios.post("http://13.51.15.15/api/register/", values, {
+      const response = await axios.post("http://3.208.171.32/api/register/", values, {
         headers: {
           "Content-Type": "application/json",
         },

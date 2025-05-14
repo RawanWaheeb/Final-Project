@@ -26,7 +26,7 @@ export default function NewPassword() {
 
     try {
       const response = await axios.post(
-        "http://13.51.15.15/api/reset_password/",
+        "http://3.208.171.32/api/reset_password/",
         {
           email: values.email,
           new_password: values.new_password,
@@ -40,7 +40,7 @@ export default function NewPassword() {
       if (response.status === 200) {
         toast.success(response.data.message || "Password reset successfully.");
         setTimeout(() => {
-          navigate("/login");  // التوجيه إلى صفحة تسجيل الدخول بعد 1.2 ثانية
+          navigate("/login");  
         }, 1200);
       } else {
         toast.error(response.data.message || "Something went wrong. Please try again.");

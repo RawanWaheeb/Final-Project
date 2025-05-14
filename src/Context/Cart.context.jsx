@@ -26,7 +26,7 @@ export default function CartProvider({ children }) {
     setLoading(true);
     try {
       const options = {
-        url: "http://13.51.15.15/api/cart/",
+        url: "http://3.208.171.32/api/cart/",
         method: "GET",
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -56,7 +56,7 @@ export default function CartProvider({ children }) {
 
     try {
       const options = {
-        url: "http://13.51.15.15/api/cart/",
+        url: "http://3.208.171.32/api/cart/",
         method: "GET",
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -70,7 +70,7 @@ export default function CartProvider({ children }) {
       }
 
       const addOptions = {
-        url: "http://13.51.15.15/api/cart/",
+        url: "http://3.208.171.32/api/cart/",
         method: "POST",
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -122,7 +122,7 @@ export default function CartProvider({ children }) {
   
     try {
       const options = {
-        url: "http://13.51.15.15/api/cart/",
+        url: "http://3.208.171.32/api/cart/",
         method: "POST",
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -152,7 +152,7 @@ export default function CartProvider({ children }) {
     }
     try {
       const options = {
-        url: `http://13.51.15.15/api/cart/reduce-delete/${slug}/`,
+        url: `http://3.208.171.32/api/cart/reduce-delete/${slug}/`,
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${storedToken}`,
@@ -176,7 +176,7 @@ export default function CartProvider({ children }) {
     if (!storedToken) return;
     try {
       const options = {
-        url: `http://13.51.15.15/api/cart/reduce-delete/${slug}/`,
+        url: `http://3.208.171.32/api/cart/reduce-delete/${slug}/`,
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${storedToken}`,

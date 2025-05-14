@@ -32,7 +32,7 @@ export default function Card({ productInfo }) {
   const imageUrl = image
     ? image.startsWith("http")
       ? image
-      : `http://13.51.15.15/media/${image}`
+      : `http://3.208.171.32/media/${image}`
     : "https://via.placeholder.com/150";
 
   const isOutOfStock = stock_quantity === 0;

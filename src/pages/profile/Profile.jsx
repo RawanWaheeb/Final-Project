@@ -12,7 +12,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("http://13.51.15.15/api/profile/", {
+        const response = await fetch("http://3.208.171.32/api/profile/", {
           method: "GET",
           headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
         });
@@ -42,7 +42,7 @@ const Profile = () => {
 
     const fetchProfile = async () => {
       try {
-        const response = await fetch("http://13.51.15.15/api/profile/", {
+        const response = await fetch("http://3.208.171.32/api/profile/", {
           method: "GET",
           headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
         });

@@ -1,10 +1,11 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCart, Heart, ScanLine, Menu, X, User, LogOut } from "lucide-react";
 import logo from "../../assets/images/logo.png"; 
 import axios from "axios";
+
+
 export default function NavbarAfterAuth() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -28,7 +29,7 @@ export default function NavbarAfterAuth() {
       const accessToken = localStorage.getItem("accessToken");
       if (accessToken) {
         try {
-          const response = await fetch("http://13.51.15.15/api/profile/", {
+          const response = await fetch("http://3.208.171.32/api/profile/", {
             method: "GET",
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -70,7 +71,7 @@ export default function NavbarAfterAuth() {
 
     try {
       const response = await axios.post(
-        "http://13.51.15.15/api/reviews/",
+        "http://3.208.171.32/api/reviews/",
         formData,
         {
           headers: {
@@ -84,7 +85,7 @@ export default function NavbarAfterAuth() {
       setReviewContent("");
       setSelectedImage(null);
 
-      const updatedReviews = await axios.get("http://13.51.15.15/api/reviews/");
+      const updatedReviews = await axios.get("http://3.208.171.32/api/reviews/");
       setReviews(updatedReviews.data);
     } catch (error) {
       console.error("Error submitting review:", error);

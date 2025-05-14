@@ -9,7 +9,7 @@ export const ReviewSection = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get("http://13.51.15.15/api/reviews/");
+        const response = await axios.get("http://3.208.171.32/api/reviews/");
         setReviews(response.data);
       } catch (error) {
         console.error("Error fetching reviews:", error);

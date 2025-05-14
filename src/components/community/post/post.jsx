@@ -23,7 +23,7 @@ const Post = ({ post, onDeletePost }) => {
       try {
         const token = localStorage.getItem("accessToken");
         const response = await axios.post(
-          `http://13.51.15.15/api/posts/${post.id}/comments/`,
+          `http://3.208.171.32/api/posts/${post.id}/comments/`,
           { comment: newComment },
           {
             headers: {
@@ -45,7 +45,7 @@ const Post = ({ post, onDeletePost }) => {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.put(
-        `http://13.51.15.15/api/posts/${post.id}/`,
+        `http://3.208.171.32/api/posts/${post.id}/`,
         { post_name: post.post_name, content: editedPostContent },
         {
           headers: {
@@ -65,7 +65,7 @@ const Post = ({ post, onDeletePost }) => {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.put(
-        `http://13.51.15.15/api/posts/${post.id}/comments/${commentId}/`,
+        `http://3.208.171.32/api/posts/${post.id}/comments/${commentId}/`,
         { comment: editedCommentContent },
         {
           headers: {
@@ -89,7 +89,7 @@ const Post = ({ post, onDeletePost }) => {
     try {
       const token = localStorage.getItem("accessToken");
       await axios.delete(
-        `http://13.51.15.15/api/posts/${post.id}/comments/${commentId}/`,
+        `http://3.208.171.32/api/posts/${post.id}/comments/${commentId}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -108,7 +108,7 @@ const Post = ({ post, onDeletePost }) => {
     try {
       const token = localStorage.getItem("accessToken");
       await axios.delete(
-        `http://13.51.15.15/api/posts/${post.id}/`,
+        `http://3.208.171.32/api/posts/${post.id}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -30,7 +30,7 @@ export default function Login() {
       if (!refresh) throw new Error("No refresh token found");
 
       const response = await axios.post(
-        "http://13.51.15.15/api/refresh/",
+        "http://3.208.171.32/api/refresh/",
         { refresh },
         { headers: { "Content-Type": "application/json" } }
       );
@@ -63,7 +63,7 @@ export default function Login() {
 
     try {
       const { data } = await axios.post(
-        "http://13.51.15.15/api/login/",
+        "http://3.208.171.32/api/login/",
         { email: values.email, password: values.password },
         { headers: { "Content-Type": "application/json" } }
       );

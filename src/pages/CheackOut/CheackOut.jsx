@@ -63,7 +63,7 @@ export default function CheackOut() {
   
     try {
       const { data } = await axios.post(
-        "http://13.51.15.15/api/checkout/",
+        "http://3.208.171.32/api/checkout/",
         orderData,
         {
           headers: {

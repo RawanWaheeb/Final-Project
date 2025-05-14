@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import { useContext, useEffect } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { userContext } from "../../Context/User.context";
@@ -23,7 +17,7 @@ export default function GuestRoute({ children }) {
     }
   }, [location.pathname, token, navigate]);
 
-  // ✅ تأكد من أن `/login` متاح للمستخدم غير المسجل
+  
   if (!token && location.pathname !== "/login") {
     return <Navigate to="/login" replace />;
   }

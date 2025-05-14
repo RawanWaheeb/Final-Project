@@ -31,7 +31,7 @@ export default function ChangePassword() {
   
     try {
       const response = await axios.put(
-        "http://13.51.15.15/api/change_password/",
+        "http://3.208.171.32/api/change_password/",
         {
           current_password: values.current_password,
           new_password: values.new_password,

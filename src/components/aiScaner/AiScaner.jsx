@@ -1,6 +1,4 @@
 
-
-
 "use client";
 
 import { useState, useRef } from "react";
@@ -54,7 +52,7 @@ export default function AiScanner() {
     }
 
     try {
-      const response = await fetch("http://13.51.15.15/api/predict/", {
+      const response = await fetch("http://3.208.171.32/api/predict/", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

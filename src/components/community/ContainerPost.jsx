@@ -12,7 +12,7 @@ export default function ContainerPost({ newPost }) {
     async function getPosts() {
       try {
         const res = await axios.get(
-          "http://13.51.15.15/api/posts/",
+          "http://3.208.171.32/api/posts/",
           {
             headers: {
               "Content-Type": "application/json",

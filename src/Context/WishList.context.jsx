@@ -21,7 +21,7 @@ export default function WishListProvider({ children }) {
     if (!storedToken) return;
 
     try {
-      const { data } = await axios.get("http://13.51.15.15/api/wishlist/", {
+      const { data } = await axios.get("http://3.208.171.32/api/wishlist/", {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       
@@ -49,7 +49,7 @@ export default function WishListProvider({ children }) {
 
     let toastId = toast.loading("Adding to wishlist...");
     try {
-      const { data } = await axios.post("http://13.51.15.15/api/wishlist/", 
+      const { data } = await axios.post("http://3.208.171.32/api/wishlist/", 
         { product_slug: productSlug },
         { headers: { Authorization: `Bearer ${storedToken}` } }
       );
@@ -79,7 +79,7 @@ export default function WishListProvider({ children }) {
     }
 
     try {
-      await axios.delete(`http://13.51.15.15/api/wishlist/delete/${productSlug}/`, {
+      await axios.delete(`http://3.208.171.32/api/wishlist/delete/${productSlug}/`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
 
